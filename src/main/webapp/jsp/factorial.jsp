@@ -33,6 +33,8 @@
 	fac(6) : <%= factorial(6) %><br>
 	fac(7) : <%= factorial(7) %><br>
 	fac(8) : <%= factorial(8) %><br>
+	fac(9) : <%= factorial(9) %><br>
+
 
 
 </body>
