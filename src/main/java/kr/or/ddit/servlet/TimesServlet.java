@@ -8,8 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class TimesServlet extends HttpServlet{
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class TimesServlet extends HttpServlet{
+	
+	//경로 : kr.or.ddit.servlet.TimesServlet
+	private Logger logger = LoggerFactory.getLogger(TimesServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -21,9 +26,14 @@ public class TimesServlet extends HttpServlet{
 		//
 		// localhost/jsp/timesTables?param=6
 		String param =   req.getParameter("i");
-		System.out.println("param : " + param);
+//		System.out.println("param : " + param);
+		
 		String param2 = req.getParameter("j");
-		System.out.println("param2 : " + param2);
+//		System.out.println("param2 : " + param2);
+		
+		//trace // debug// info//warn// error 의 레벨
+		logger.debug("param : {}" + param);
+		logger.debug("param2 : {}" + param2);
 		
 		pw.write("<html>");
 		pw.write("  <head>");
