@@ -18,7 +18,7 @@ public class TimesServlet extends HttpServlet{
 		resp.setContentType("text/html; charset=utf-8");
 		
 		PrintWriter pw = resp.getWriter();
-		
+		//
 		// localhost/jsp/timesTables?param=6
 		String param =   req.getParameter("i");
 		System.out.println("param : " + param);

@@ -21,7 +21,7 @@ public class DateTestServlet extends HttpServlet{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
 		Date date = new Date();
 		String time= sdf.format(date.getTime());
-		
+		//
 		
 		PrintWriter pw = resp.getWriter();
 		pw.write(time);
