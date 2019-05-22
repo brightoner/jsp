@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 	td{
-		border: 2px solid lightbule;
+		border: 2px solid red;
 	}
 
 </style>
@@ -18,11 +18,18 @@
  
 <table border="1">
 
-<% for(int i = 2; i<=9; i++){ %>
+<% 
+	
+	String param = request.getParameter("i");
+    String param2 = request.getParameter("j");
+%>
+
+
+<% for(int i = 2; i<=Integer.parseInt(param); i++){ %>
 
 <tr>	
 	
-	<% for(int j = 1; j<=9; j++){ %>
+	<% for(int j = 1; j<=Integer.parseInt(param2); j++){ %>
 	
 	<td> <%= i + "*" + j + "="  + i *j %> </td>
 	
