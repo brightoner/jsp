@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class TimesServlet extends HttpServlet{
 	
-	//°æ·Î : kr.or.ddit.servlet.TimesServlet
+	//ê²½ë¡œ : kr.or.ddit.servlet.TimesServlet
 	private Logger logger = LoggerFactory.getLogger(TimesServlet.class);
 
 	@Override
@@ -31,7 +31,7 @@ public class TimesServlet extends HttpServlet{
 		String param2 = req.getParameter("j");
 //		System.out.println("param2 : " + param2);
 		
-		//trace // debug// info//warn// error ÀÇ ·¹º§
+		//trace // debug// info//warn// error ë ˆë²¨
 		logger.debug("param : {}" + param);
 		logger.debug("param2 : {}" + param2);
 		
