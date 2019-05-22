@@ -28,6 +28,7 @@
     <servlet-name>basicServlet</servlet-name>
     <url-pattern>/bs</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>dateTestServlet</servlet-name>
     <servlet-class>kr.or.ddit.servlet.DateTestServlet</servlet-class>
@@ -36,6 +37,7 @@
     <servlet-name>dateTestServlet</servlet-name>
     <url-pattern>/nowDate</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>timesServlet</servlet-name>
     <servlet-class>kr.or.ddit.servlet.TimesServlet</servlet-class>

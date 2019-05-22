@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
-	<!--   1.5를 1.8로 변환 -->
+	<!--   1.5를 1.8로 변환(JavaSE-1.8) -->
   <build>
   	<plugins>
   		<plugin>
