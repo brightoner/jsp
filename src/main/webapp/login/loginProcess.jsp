@@ -22,7 +22,7 @@
 				 <%} %>
 	
 	
-	request.getParameter("password") : <%= request.getParameter("password") %> <br>
+	request.getParameter("password") : <%= request.getParameter("userId") %> <br>
 	
 	
 	
