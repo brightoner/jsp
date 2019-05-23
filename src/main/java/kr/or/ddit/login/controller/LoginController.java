@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
+import kr.or.ddit.user.model.UserVo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,8 +54,20 @@ public class LoginController extends HttpServlet {
 		//								 dispatch방식으로 위임
 		
 		
+		//session에 사용자 정보가 있을경우 --> main 화면
+		//session에 사용자 정보가 없을경우 --> 기존로그인화면
+		
+		UserVo SESSION_USER = (UserVo) request.getSession().getAttribute("USER_INFO");
+		if(SESSION_USER != null){
+			request.getRequestDispatcher("/main.jsp").forward(request, response);;
+		}else{
+			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+			
+		}
+		
+		
 		//방식1
-		request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+//		request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 		
 		//방식2
 //		RequestDispatcher rd = request.getRequestDispatcher("/login/login.jsp");
@@ -75,8 +91,26 @@ public class LoginController extends HttpServlet {
 		
 		//일치하면(로그인 성공) : main화면으로 이동
 		if(userId.equals("brown") && password.equals("brown1234")) {
-			RequestDispatcher rd =  request.getRequestDispatcher("/main.jsp");
-			rd.forward(request, response);
+			
+			//session에 사용자 정보를 넣어준다(사용빈도가 높기때문에)
+			//방법1
+//			request.getSession().setAttribute("USER_INFO", new UserVo("브라운","brown", "곰");;
+			
+			//방법2
+			HttpSession session = request.getSession();
+			session.setAttribute("USER_INFO", new UserVo("브라운","brown", "곰"));
+			
+			
+			//request에 사용자 정보 넣기
+			//방법1
+//			RequestDispatcher rd =  request.getRequestDispatcher("/main.jsp");
+//			rd.forward(request, response);
+			
+			//방법2
+			request.getRequestDispatcher("/main.jsp").forward(request, response);
+			
+			
+			
 		}else{		//불일치하면(아이디 또는 비밀번호를  잘못입력) :로그인화면으로 이동
 			//로그인화면으로 이동 : localhost/jsp/login
 			//현상황에서는 /jsp/login  url로 dispatch방식으로 위임이 불가
