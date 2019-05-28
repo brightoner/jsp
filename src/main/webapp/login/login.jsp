@@ -18,6 +18,101 @@
 
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath() %>/css/signin.css" rel="stylesheet">
+	
+	<!-- 05.28 -->
+	<!-- jQery CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+	
+	<script>
+		//******개념중요!!!
+// 		//rememberme (checkbox)가 밑에 있어서 나오기전에  먼저 호출됨 -->  출력이 제대로 안된다!!
+// 		console.log("remember me" + $("#rememberme").html());
+// 		//해결방안 - (document).ready 는 모든 함수가 실행된 후 마지막에 실행
+// 		$(document).ready(function(){
+// 			console.log("remember me" + $("#rememberme").html());
+// 		});
+		
+	
+		//(document).ready 는 모든 함수가 실행된 후 마지막에 실행 - ***중요!!!!!!
+		$(document).ready(function(){
+			//문서로 딩이 완료되고 아서 실행되는 부분
+			//rememberme checkbox
+			//1. rememberme cookie가 있는지?? 잇으면 값이 true인지 확인
+			//1-1. rememberme 가 true이면 input id="rememberme" 체크박스를 체크
+			
+			var rememberme = getCookie("rememberme");
+			if(rememberme == "true"){
+				$("#rememberme").prop("checked", true);
+				$("#userId").val(getCookie("userId"));
+				$("#password").focus();
+			}
+			
+			//signin button 클릭시 실행되는 핸들러
+			$("#signinBtn").on("click", function(){
+				//만약, rememberme 체크 박스가 체크 되어 있는경우
+				//  사용자 아이디 값을 userId쿠키로 저장
+				//  true값을 rememberme cookie 값으로 저장
+				if($("#rememberme").is(":checked")){
+					setCookie("userId", $("#userId").val(), 30);
+					setCookie("rememberme", "true", 30);
+				
+				//만약, 체크 박스가 해제 되어 있는경우
+				//  userId, rememberme cookie 값을 삭제
+				}else{
+					deleteCookie("userId");
+					deleteCookie("rememberme");
+				}
+				
+				//실제 로그인 요청을 서버로 전송
+				$("#frm").submit();
+				
+				
+			});
+			
+		});
+		
+		//쿠키 저장
+		//expires : 현재 날자부터 몇일동안 유효한지 일자(정수)
+		function setCookie(cookieName, cookieValue, expires){
+			var dt = new Date();
+			dt.setDate(dt.getDate() + parseInt(expires));
+			
+			document.cookie = cookieName + "=" + cookieValue + "; path=/; expires=" 
+				+ dt.toGMTString();
+		}
+		
+		//쿠키 삭제 - expires 에서 -값을 넣어주면 된다(현재시간에서 - 값을 넣어주면 값이 없어지므로)
+		function deleteCookie(cookieName){
+			setCookie(cookieName, "", -5);
+		}
+		
+		//쿠키 이름에 해당하는 쿠키값을 조회
+		function getCookie(cookieName){
+			//String[] cookieArray = CookieUtil.cookieString.split("; ");
+			var cookieArray = document.cookie.split("; ");
+			
+			//String cookieValue="";
+			var cookieValue = "";
+			
+			//for(String str : cookieArray){
+			for(var i = 0; i < cookieArray.length; i++){
+				//if(str.startsWith(cookie+"=")){
+					var str = cookieArray[i];
+					if(str.startsWith(cookieName+"=")){
+						//String[] cookieStr = str.split("=");
+						var cookieStr = str.split("=");
+					
+						//cookieValue = cookieStr[1];
+						cookieValue = cookieStr[1];
+					
+						break;
+				}
+			}
+			return cookieValue;
+			
+		}
+	</script>
 
   </head>
 
@@ -25,22 +120,23 @@
 
     <div class="container">
 
-      <form class="form-signin" action="<%=request.getContextPath() %>/login" method="post">
+      <form id="frm" class="form-signin" action="<%=request.getContextPath() %>/login" method="post">
        
         <h2 class="form-signin-heading">Please sign in</h2>
         
         <label for="userId" class="sr-only" >userId</label>
-        <input type="text" id="userId" class="form-control" placeholder="userId" required autofocus name="userId" value="brown">
+        <input type="text" id="userId" class="form-control" placeholder="userId" name="userId" >
         
         <label for="inputPassword" class="sr-only" >Password</label>
         
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password" value="brown1234">
+        <input type="password" id="password" class="form-control" placeholder="Password" required name="password" value="brown1234">
+       
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input id="rememberme" type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button id="signinBtn" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
       </form>
 
     </div> <!-- /container -->
