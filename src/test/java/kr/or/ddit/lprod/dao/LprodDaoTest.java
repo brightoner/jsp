@@ -1,11 +1,12 @@
-package kr.or.ddit.user.dao;
+package kr.or.ddit.lprod.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
+import kr.or.ddit.lprod.model.LprodVo;
 import kr.or.ddit.paging.model.PageVo;
-import kr.or.ddit.user.model.UserVo;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,12 +16,12 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UserDaoTest {
+public class LprodDaoTest {
 	
 	private static final Logger logger = LoggerFactory
-			.getLogger(UserDaoTest.class);
+			.getLogger(LprodDaoTest.class);
 	
-	private IUserDao userDao;
+	private ILprodDao lprodDao;
 	
 	//junit 실행순서
 	//@BeforeClass가 적용된  메소드가 최소 1회 실행
@@ -41,7 +42,7 @@ public class UserDaoTest {
 	
 	@Before
 	public void setup(){
-		userDao = new UserDao();
+		lprodDao = new LprodDao();
 		logger.debug("setup");
 	}
 	
@@ -66,41 +67,21 @@ public class UserDaoTest {
 	* Method 설명 : 사용자 전체조회 테스트 
 	*/
 	@Test
-	public void userListTest() {
+	public void lprodListTest() {
 		/***Given***/
 		
 
 		/***When***/
-		List<UserVo> userList = userDao.userList();
+		List<LprodVo> lprodList = lprodDao.lprodList();
 
 		/***Then***/
-		assertEquals("brown", userList.get(0).getUserId());
-		assertEquals(105, userList.size()); 	// (첫번째 는 기대값(예상값), size())
-		logger.debug("userList : {}", userList);
+		//assertEquals("brown", lprodList.get(0).getLprod_id());
+		assertEquals(13, lprodList.size()); 	// (첫번째 는 기대값(예상값), size())
+		logger.debug("lprodList : {}", lprodList);
 
 	}
 	
-	/**
-	* Method : getUserTest
-	* 작성자 : PC22
-	* 변경이력 :
-	* Method 설명 : 사용자 조회테스트
-	*/
-	@Test
-	public void getUserTest(){
-		
-		/***Given***/
-		
-		String userId = "brown";
-
-		/***When***/
-		UserVo userVo = userDao.getUser(userId);
-
-		/***Then***/
-		assertEquals("브라운", userVo.getName());
-		logger.debug("userVo : {}", userVo);
-
-	}
+	
 	
 	//사용자 페이징 리스트 조회
 	//고려사항
@@ -115,16 +96,16 @@ public class UserDaoTest {
 	* Method 설명 : 사용자 페이징 리스트 조회 테스트
 	*/
 	@Test
-	public void userPagingListTest(){
+	public void lprodPagingListTest(){
 		/***Given***/
-		PageVo pageVo = new PageVo(1, 10);
+		PageVo pageVo = new PageVo(1, 5);
 		
 		/***When***/
-		List<UserVo> userList = userDao.userPagingList(pageVo);
+		List<LprodVo> lprodList = lprodDao.lprodPagingList(pageVo);
 
 		/***Then***/
-		assertNotNull(userList);
-		assertEquals(10, userList.size());
+		assertNotNull(lprodList);
+		assertEquals(5, lprodList.size());
 		
 
 	}
@@ -136,15 +117,15 @@ public class UserDaoTest {
 	* Method 설명 : 사용자 전체수 조회 테스트
 	*/
 	@Test
-	public void usersCntTest(){
+	public void lprodCntTest(){
 		/***Given***/
 		
 
 		/***When***/
-		int usersCnt = userDao.usersCnt();
+		int lprodCnt = lprodDao.lprodCnt();
 
 		/***Then***/
-		assertEquals(105, usersCnt);
+		assertEquals(13, lprodCnt);
 	}
 	
 

@@ -3,7 +3,9 @@ package kr.or.ddit.user.dao;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
+import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
@@ -69,5 +71,51 @@ public class UserServiceTest {
 		
 		
 	}
+	
+	/**
+	* Method : userPagingListTest
+	* 작성자 : PC22
+	* 변경이력 :
+	* Method 설명 : 사용자 페이징 리스트 조회 테스트
+	*/
+	@Test
+	public void userPagingListTest(){
+		/***Given***/
+		PageVo pageVo = new PageVo(1, 10);
+		
+		/***When***/
+		Map<String, Object> resultMap = userService.userPagingList(pageVo);
+		List<UserVo> userList = (List<UserVo>) resultMap.get("userList");
+		int paginationSize = (Integer) resultMap.get("paginationSize");
+
+		/***Then***/
+		
+		//pageingList assert
+		assertNotNull(userList);
+		assertEquals(10, userList.size());
+		
+		//paginationSize assert
+		assertEquals(11, paginationSize);
+		
+	}
+		
+		@Test
+		public void ceilTest(){
+			/***Given***/
+			int usersCnt = 105;
+			int pageSize = 10;
+
+			/***When***/
+			double paginationSize = Math.ceil((double)usersCnt/pageSize);
+			logger.debug("paginationSize : {}", paginationSize);
+
+			/***Then***/
+			assertEquals(11, (int)paginationSize);
+
+			
+		}
+		
+		
+
 
 }
