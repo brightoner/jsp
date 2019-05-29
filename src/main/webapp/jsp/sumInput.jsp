@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>sum 테스트</h2>
-	<form action="<%=request.getContextPath()%>/Sumcalculation" method="post">
+	<form action="${pageContext.request.contextPath}/Sumcalculation" method="post">
 		<input type="text" name="start">
 		<input type="text" name="end">
 		<button>전송</button>

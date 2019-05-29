@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,18 +45,27 @@
 									<th>사용자 별명</th>
 									<th>등록일시</th>
 								</tr>
-								<%
-									List<UserVo> userList = (List<UserVo>)request.getAttribute("userList");
- 								%>	 
-								<% for(int i = 0; i<userList.size(); i++){%>
-										<tr>
-											<td><%=userList.get(i).getUserId() %></td>
-											<td><%=userList.get(i).getName() %></td>
-											<td><%=userList.get(i).getAlias() %></td>
-											<td></td>
-										</tr>
-								<% }%>
+<%-- 								<%   --%>
+<!--   									LIST<USERVO> USERLIST = (LIST<USERVO>)REQUEST.GETATTRIBUTE("USERLIST");  -->
+<%--   								%>	  --%>
 								
+								<c:forEach items="${userList}" var="user">
+									<tr>
+										<td>${user.userId }</td>
+										<td>${user.name }</td>
+										<td>${user.alias }</td>
+										<td></td>
+									</tr>
+								</c:forEach>
+								
+<%-- 								<% for(int i = 0; i<userList.size(); i++){%> 
+ 										<tr>
+ 											<td><%=userList.get(i).getUserId() %></td>
+ 											<td><%=userList.get(i).getName() %></td>
+ 											<td><%=userList.get(i).getAlias() %></td>
+ 											<td></td>
+ 										</tr>
+ 								<% }%> --%>								
 								
 							</table>
 						</div>

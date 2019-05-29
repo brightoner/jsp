@@ -14,15 +14,15 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<%=request.getContextPath() %>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath() %>/css/signin.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/signin.css" rel="stylesheet">
 	
 	<!-- 05.28 -->
 	<!-- jQery CDN -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/js.cookie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/js.cookie.js"></script>
 	
 	<script>
 		//******개념중요!!!
@@ -119,17 +119,18 @@
   <body>
 
     <div class="container">
-
-      <form id="frm" class="form-signin" action="<%=request.getContextPath() %>/login" method="post">
+    
+      <form id="frm" class="form-signin" action="${pageContext.request.contextPath}/login" method="post">
+	<%-- <form id="frm" class="form-signin" action="${pageContext.request.contextPath}"> --%>
        
         <h2 class="form-signin-heading">Please sign in</h2>
         
         <label for="userId" class="sr-only" >userId</label>
-        <input type="text" id="userId" class="form-control" placeholder="userId" name="userId" >
+        <input type="text" id="userId" class="form-control" placeholder="userId" name="userId" required value="${param.userId }">
         
         <label for="inputPassword" class="sr-only" >Password</label>
         
-        <input type="password" id="password" class="form-control" placeholder="Password" required name="password" value="brown1234">
+        <input type="password" id="password" class="form-control" placeholder="Password" required name="password"  value="brown1234">
        
         <div class="checkbox">
           <label>
