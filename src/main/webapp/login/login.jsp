@@ -36,9 +36,9 @@
 	
 		//(document).ready 는 모든 함수가 실행된 후 마지막에 실행 - ***중요!!!!!!
 		$(document).ready(function(){
-			//문서로 딩이 완료되고 아서 실행되는 부분
+			//문서로 로딩이 완료되고 나서 실행되는 부분
 			//rememberme checkbox
-			//1. rememberme cookie가 있는지?? 잇으면 값이 true인지 확인
+			//1. rememberme cookie가 있는지?? 있으면 값이 true인지 확인
 			//1-1. rememberme 가 true이면 input id="rememberme" 체크박스를 체크
 			
 			var rememberme = Cookies.get("rememberme");   //getCookie("rememberme");

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.service.IUserService;
+import kr.or.ddit.user.service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,20 +45,25 @@ public class LoginController extends HttpServlet {
 			.getLogger(LoginController.class);
 
 	private static final long serialVersionUID = 1L;
+	
+	private IUserService userService;
+	
+	@Override
+	public void init() throws ServletException {
+		userService = new UserService();
+	}
   
 	
 	//사용자 로그인 화면 요청을 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("loginController doGet()");	//sysout대신 사용
 		
-		
 		//cookie처리
-		
-		
-		for(Cookie cookie : request.getCookies()){
-			logger.debug("cookie : {}, {}", cookie.getName(), cookie.getValue());
+		if(request.getCookies() != null){
+			for(Cookie cookie : request.getCookies()){
+				logger.debug("cookie : {}, {}", cookie.getName(), cookie.getValue());
+			}
 		}
-		
 		
 		//login 화면을 처리해줄 누군가??에게 위임
 		//단순 login화면을 html로 응답을 생성해주는 작업이 필요
@@ -94,9 +101,13 @@ public class LoginController extends HttpServlet {
 		logger.debug("parameter userId : {}", request.getParameter("userId") );
 		logger.debug("parameter password : {}", request.getParameter("password") );
 		
+		
+		
 		//사용자 파라미터 serId, password
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
+		
+		
 		
 		//db에서 해당사용자의 정보조회(service, dao 필요)
 		
@@ -104,12 +115,19 @@ public class LoginController extends HttpServlet {
 		//  --> userId : brown이고 password : brown1234라는 값일때 통과, 그 이외의 값을 불일치
 		
 		//일치하면(로그인 성공) : main화면으로 이동
-		if(userId.equals("brown") && password.equals("brown1234")) {
+		
+		UserVo userVo = userService.getUser(userId);
+		
+		if(userVo != null && 
+				userId.equals(userVo.getUserId()) && password.equals(userVo.getPass())){	//DB(users 테이블)에서 정보 받아올때
+
+//		if(userId.equals("brown") && password.equals("brown1234")) {	//DB없이 가짜로 만든 정보로 받아올때
+		
 			
 			//remember 파라미터가 존재 할때 userId, rememberme cookie 설정해 준다
 			//remember 파라미터가 존재하지 않을경우 userId, rememberme cookie 삭제해 준다
 			int cookieMaxAge = 0;
-			if(request.getParameter("rememberme") != null)
+			if(request.getParameter("rememberme") != null){
 				cookieMaxAge = 60*60*24*30;  //초 단위가 기준// 삭제시는 0 사용
 				
 				Cookie uesrIdCookie = new Cookie("uerId", userId);
@@ -120,19 +138,19 @@ public class LoginController extends HttpServlet {
 				
 				response.addCookie(uesrIdCookie);
 				response.addCookie(rememberMeCookie);
-			
+			}
 			
 			
 			//session에 사용자 정보를 넣어준다(사용빈도가 높기때문에)
 			//방법1
 			
-//			request.getSession().setAttribute("USER_INFO", new UserVo("브라운","brown", "곰");;
+			request.getSession().setAttribute("USER_INFO", userVo);
 			
 			//방법2
-			HttpSession session = request.getSession();
-			session.setAttribute("USER_INFO", new UserVo("브라운","brown", "곰"));
+//			HttpSession session = request.getSession();
+//			session.setAttribute("USER_INFO", new UserVo("브라운","brown", "곰"));
 			
-			
+				
 			//request에 사용자 정보 넣기
 			//방법1
 //			RequestDispatcher rd =  request.getRequestDispatcher("/main.jsp");
