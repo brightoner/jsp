@@ -1,7 +1,6 @@
 package kr.or.ddit.user.controller;
 
 import java.io.IOException;
-import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Map;
 
@@ -10,16 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.catalina.connector.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @WebServlet("/userPagingList")
