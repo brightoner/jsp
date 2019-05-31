@@ -41,7 +41,7 @@ public class UserServiceTest {
 
 		/***Then***/
 		assertEquals("brown", userList.get(0).getUserId());
-		assertEquals(5, userList.size());
+		assertEquals(105, userList.size());
 		logger.debug("userList : {}", userList);
 	}
 	

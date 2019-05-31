@@ -15,7 +15,7 @@ import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
 
 
-@WebServlet("/userList")
+@WebServlet("/user")
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

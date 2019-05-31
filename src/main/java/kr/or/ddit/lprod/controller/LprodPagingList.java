@@ -35,7 +35,7 @@ public class LprodPagingList extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//parameter가 없을때 - 기본값 page = 1, pageSize= 10
+		//parameter가 없을때 - 기본값 page = 1, pageSize= 5
 		String pageString = request.getParameter("page");
 		String pageSizeString = request.getParameter("pageSize");
 		

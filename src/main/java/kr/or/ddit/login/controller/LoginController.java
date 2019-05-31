@@ -106,18 +106,17 @@ public class LoginController extends HttpServlet {
 		
 		
 		
-		//db에서 해당사용자의 정보조회(service, dao 필요)
+		
 		
 		//해당사용자 정보를 이용하여 사용자가 보낸 serId, password가 일치하는지 검사
 		//  --> userId : brown이고 password : brown1234라는 값일때 통과, 그 이외의 값을 불일치
 		
+		//db에서 해당사용자의 정보조회(service, dao 필요)
 		//일치하면(로그인 성공) : main화면으로 이동
-		
 		UserVo userVo = userService.getUser(userId);
 		
 		if(userVo != null && 
-				userId.equals(userVo.getUserId()) && password.equals(userVo.getPass())){	//DB(users 테이블)에서 정보 받아올때
-
+				password.equals(userVo.getPass())){	//DB(users 테이블)에서 정보 받아올때
 //		if(userId.equals("brown") && password.equals("brown1234")) {	//DB없이 가짜로 만든 정보로 받아올때
 		
 			
@@ -127,7 +126,7 @@ public class LoginController extends HttpServlet {
 			if(request.getParameter("rememberme") != null){
 				cookieMaxAge = 60*60*24*30;  //초 단위가 기준// 삭제시는 0 사용
 				
-				Cookie uesrIdCookie = new Cookie("uerId", userId);
+				Cookie uesrIdCookie = new Cookie("userId", userId);
 				uesrIdCookie.setMaxAge(cookieMaxAge);  //초 단위가 기준// 삭제시는 0 사용
 				
 				Cookie rememberMeCookie = new Cookie("rememberme", "true");

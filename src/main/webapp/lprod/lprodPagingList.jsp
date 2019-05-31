@@ -1,9 +1,11 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Choose"%>
 <%@page import="kr.or.ddit.lprod.model.LprodVo"%>
 <%@page import="kr.or.ddit.paging.model.PageVo"%>
 <%@page import="kr.or.ddit.lprod.model.LprodVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,18 +46,15 @@
 									<th>사용자 이름</th>
 									<th>사용자 별명</th>
 								</tr>
-								<%
-									List<LprodVo> lprodList = (List<LprodVo>)request.getAttribute("lprodList");
- 								%>	 
-								<% for(int i = 0; i<lprodList.size(); i++){%>
-										<tr>
-											<td><%=lprodList.get(i).getLprod_id()%></td>
-											<td><%=lprodList.get(i).getLprod_gu() %></td>
-											<td><%=lprodList.get(i).getLprod_nm() %></td>
-										</tr>
-								<% }%>
 								
-								
+								<c:forEach items="${lprodList }" var="vo" varStatus="status">
+									<tr>
+										<td>${vo.lprod_id }</td>
+										<td>${vo.lprod_gu}</td>
+										<td>${vo.lprod_nm }</td>
+									</tr>
+								</c:forEach>
+															
 							</table>
 						</div>
 
@@ -64,34 +63,40 @@
 						<!-- 사용자 수 : 105건 // 페이지 네이션 : 11건 -->
 						<div class="text-center">
 							<ul class="pagination">
-							<%
-								PageVo pageVo = (PageVo)request.getAttribute("pageVo");
-								int paginationSize = (Integer)request.getAttribute("paginationSize");
-								if(pageVo.getPage() == 1) {%>
-									<li class="disabled"><span>«</span></li>
-								<%} else {%>	
-									<li><a href="<%=request.getContextPath()%>/lprodPagingList?page=<%=pageVo.getPage()-1 %>&pageSize=<%=pageVo.getPageSize()%>">«</a></li>
-									
-									
-								<%} %>
-							<%for(int i=1; i<= paginationSize; i++){%>
-									
-									<%if(pageVo.getPage() == i){ %>
- 									<!-- active는 활성화 disabled는 비활성화 -->
+							
+								<c:choose>
+									<c:when test="${pageVo.page == 1 }">
+										<li class="disabled"><span>«</span></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="${pageContext.request.contextPath }/lprodPagingList?page=${pageVo.page -1 }&pageSize=${pageVo.pageSize }">«</a></li>
+									</c:otherwise>
+								
+								</c:choose>
+								
+								<c:forEach begin="1" end="${paginationSize }" step="1" var="i">
+								<c:choose>
+									<c:when test="${pageVo.page ==i }">
 										<li class="active">
-											<span><%=i %></span>
+											<span>${i }</span>
 										</li>
-									 	<%}else {%>
-									 		<li>
-									 			<a href="<%=request.getContextPath()%>/lprodPagingList?page=<%=i %>&pageSize=<%=pageVo.getPageSize()%>"><%=i %></a>
-									 		<li>
-									 	<%} %>
-								<%} %>
-							<% if(pageVo.getPage() == paginationSize) {%>
-								<li class="disabled"><span>»</span></li>	
-							<%} else { %>
-								<li><a href="<%=request.getContextPath()%>/lprodPagingList?page=<%=pageVo.getPage()+1 %>&pageSize=<%=pageVo.getPageSize()%>">»</a></li>
-							<%} %>
+									</c:when>
+									<c:otherwise>
+										<li>
+									 		<a href="${pageContext.request.contextPath}/lprodPagingList?page=${i }&pageSize=${pageVo.pageSize }">${i }</a>
+									 	<li>
+									</c:otherwise>
+								</c:choose>
+								</c:forEach>
+								
+								<c:choose>
+									<c:when test="${pageVo.page == paginationSize }">
+										<li class="disabled"><span>»</span></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=${pageVo.page +1 }&pageSize=${pageVo.pageSize }">»</a></li>
+									</c:otherwise>
+								</c:choose>
 							
 							</ul>
 						</div>

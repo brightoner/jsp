@@ -5,15 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.paging.model.PageVo;
+import kr.or.ddit.user.dao.IUserDao;
 import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVo;
 
 public class UserService implements IUserService{
 
-	private UserDao dao = new UserDao();
-	private static UserService service;
-	
-
+	private IUserDao dao = new UserDao();
+//	private static UserService service;
 	
 	/**
 	* Method : userList
