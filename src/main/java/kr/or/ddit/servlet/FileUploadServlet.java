@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.service.IUserService;
+import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.util.PartUtil;
 
 import org.slf4j.Logger;
@@ -29,8 +32,15 @@ public class FileUploadServlet extends HttpServlet {
 	private static final Logger logger = LoggerFactory
 			.getLogger(FileUploadServlet.class);
        
+	private IUserService userService;
 
+	@Override
+	public void init() throws ServletException {
+		userService = new UserService();
+	}
 
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//userId, profile 파라미터 확인
@@ -38,6 +48,8 @@ public class FileUploadServlet extends HttpServlet {
 		String profile = request.getParameter("profile");
 		logger.debug("userId :{}", userId);
 		logger.debug("profile :{}", profile);
+		
+		UserVo userVo = new UserVo();
 		
 		Part part = request.getPart("profile");
 		logger.debug("part.getSize() : {}", part.getSize());
@@ -53,42 +65,29 @@ public class FileUploadServlet extends HttpServlet {
 			String fileName = PartUtil.getFileName(contentDisposition);	
 			//파일명으로 부터 파일 확장자를 반환
 			String ext = PartUtil.getExt(fileName);
-			ext = ext.equals("") ? "" :"." + ext;
 			
+//			//파일을 받는폴더
+//			//년도에 해당하는 폴더가 있는지, 년도 안에 월에 해당하는 폴더가 있는지
+//			Date dt = new Date();
+//			//방법1
+////			SimpleDateFormat yyyySdf = new SimpleDateFormat("yyyy");
+////			SimpleDateFormat mmSdf = new SimpleDateFormat("MM");
+////			String yyyy = yyyySdf.format(dt);
+////			String mm = mmSdf.format(dt);
+//			
+//			//방법2
+//			SimpleDateFormat yyyyMMSdf = new SimpleDateFormat("yyyyMM");
+//			String yyyyMM = yyyyMMSdf.format(dt);
+//			String yyyy = yyyyMM.substring(0,4);
+//			String mm = yyyyMM.substring(4,6);
 			
-			//파일을 받는폴더
-			//년도에 해당하는 폴더가 있는지, 년도 안에 월에 해당하는 폴더가 있는지
-			Date dt = new Date();
-			//방법1
-//			SimpleDateFormat yyyySdf = new SimpleDateFormat("yyyy");
-//			SimpleDateFormat mmSdf = new SimpleDateFormat("MM");
-//			String yyyy = yyyySdf.format(dt);
-//			String mm = mmSdf.format(dt);
-			
-			//방법2
-			SimpleDateFormat yyyyMMSdf = new SimpleDateFormat("yyyyMM");
-			String yyyyMM = yyyyMMSdf.format(dt);
-			String yyyy = yyyyMM.substring(0,4);
-			String mm = yyyyMM.substring(4,6);
-			
-			File yyyyFolder = new File("d:\\upload\\" + yyyy);
-			//신규년도로 넘어 갔을경우 해당년도의 폴더를 생성우
-			if(!yyyyFolder.exists()){
-				yyyyFolder.mkdir();
-				
-			}
-			
-			//월에 해당하는 폴더가 있는지 확인
-			File mmFolder = new File("d:\\upload\\2019\\" + mm);
-			if(!mmFolder.exists()){
-				mmFolder.mkdir();
-			}
-			
-//			String uploadPath = "d:\\upload\\" + yyyy + "\\" + mm;
-			String uploadPath = "d:\\upload\\" + yyyy + File.separator + mm;
+			String uploadPath = PartUtil.getUploadPath();
 			File uploadFolder = new File(uploadPath);
 			if(uploadFolder.exists()){
 				
+				String filePath = uploadPath + File.separator + UUID.randomUUID().toString() + ext;
+				userVo.setPath(fileName);
+				userVo.setFilename(fileName);
 				//파일 디스크에 쓰기
 				//		다운받을 경로 + "\\" + random으로 임시 아이디를 만들어준다 + 확장자를 붙여준다
 				part.write(uploadPath + File.separator + UUID.randomUUID().toString() + ext);	

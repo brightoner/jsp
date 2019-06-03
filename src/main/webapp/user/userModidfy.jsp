@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>s
 
 <!DOCTYPE html>
 <html lang="en">
@@ -89,12 +90,12 @@ function dateInit(){
             <div class="row">
                <div class="col-sm-8 blog-main">
                   <h2 class="sub-header">사용자 수정</h2>
-                  <form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userModify" method="post">
+                  <form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userModify" method="post" enctype="multipart/form-data">
 					
 					<div class="form-group">
                         <label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
                         <div class="col-sm-10">
-							<input type="file" name="filename"/>
+							<input type="file" name="profile"/>
                         </div>
                      </div>
       

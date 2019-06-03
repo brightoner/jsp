@@ -1,14 +1,18 @@
 package kr.or.ddit.user.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +20,11 @@ import org.slf4j.LoggerFactory;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
+import kr.or.ddit.util.PartUtil;
 
 
 @WebServlet("/userModify")
+@MultipartConfig(maxFileSize=1024*1024*3, maxRequestSize=1024*1024*15)
 public class UserModifyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -64,21 +70,48 @@ public class UserModifyController extends HttpServlet {
 		
 		UserVo userVo = null;
 		
-		UserVo userVo1 = userService.getUser(userId);
-		request.setAttribute("userVo", userVo1);
 		try {
-			userVo = new UserVo(name, userId, alias, pass, addr1, addr2, zipcd,sdf.parse(birth));
+			userVo = new UserVo(name, userId, alias, pass, addr1, addr2, zipcd,sdf.parse(birth)/*,"",""*/);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
+		UserVo userVo1 = userService.getUser(userId);
+		request.setAttribute("userVo", userVo1);
+		
+		
 		if(userVo1 != null ){
 			
-			int updateDataCnt = userService.updateDataUser(userVo);
-		
+			Part profile = request.getPart("profile");
 			
-			if(updateDataCnt == 1){
-				response.sendRedirect(request.getContextPath()+"/userPagingList");
+			
+			if(profile.getSize() >0){
+				
+				String contentDisposition = profile.getHeader("content-disposition");
+				String filename = PartUtil.getFileName(contentDisposition);
+				String ext = PartUtil.getExt(filename);
+				
+				String uploadPath = PartUtil.getUploadPath();
+				File uploadFolder = new File(uploadPath);
+			
+				
+				if(uploadFolder.exists()){
+					String filePath = uploadPath + File.separator + UUID.randomUUID().toString() + ext;
+					userVo.setPath(filePath);
+					userVo.setFilename(filename);
+					profile.write(filePath);
+					profile.delete();
+					
+					
+				}
+				
+				int updateDataCnt = userService.updateDataUser(userVo);
+				
+				if(updateDataCnt == 1){
+					response.sendRedirect(request.getContextPath()+"/userPagingList");
+				}else{
+					
+				}
 			}else{
 				doGet(request, response);
 			}

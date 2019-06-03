@@ -16,7 +16,9 @@ public class UserVo {
 	private String zipcd; 
 	private Date birth;
 	private String path;
+	private String filename;
 	
+
 	public String getBirthStr(){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -27,25 +29,26 @@ public class UserVo {
 	}
 	
 	public UserVo(String name, String userId, String alias, String pass,
-			String addr1, String addr2, String zipcd, Date birth) {
+			String addr1, String addr2, String zipcd, Date birth /*,String path, String filename*/) {
 		this(name, userId, alias);
 		this.pass = pass;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
 		this.zipcd = zipcd;
 		this.birth = birth;
+//		this.path = path;
+//		this.filename = filename;
 	}
 
-	public UserVo(){
-		
-	}
-	
 	public UserVo(String name, String userId, String alias) {
 		this.name = name;
 		this.userId = userId;
 		this.alias = alias;
 	}
 
+	public UserVo(){
+		
+	}
 
 
 	@Override
@@ -55,6 +58,8 @@ public class UserVo {
 				+ addr2 + ", zipcd=" + zipcd + ", birth=" + birth + ", path="
 				+ path + "]";
 	}
+
+	
 	
 	public String getName() {
 		return name;
@@ -109,6 +114,14 @@ public class UserVo {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	
+	public String getFilename() {
+		return filename;
+	}
+	
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 	
 	
