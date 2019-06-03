@@ -2,6 +2,8 @@ package kr.or.ddit.user.dao;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -114,6 +116,42 @@ public class UserServiceTest {
 
 			
 		}
+		
+		
+		/**
+		* Method : insertUserTest
+		* 작성자 : PC22
+		* 변경이력 :
+		* Method 설명 : 사용자 등록 테스트
+		*/
+		@Test
+		public void insertUserTest(){
+			/***Given***/
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			UserVo userVo = null;
+			
+			try {
+				userVo = new UserVo("대덕인", "userTest", "중앙로", "userTest1234", "대전광역시 중구 중앙로76",
+											"영민빌딩 2층 204호", "34940", sdf.parse("2019-05-31"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			/***When***/
+			int insertCnt = userService.insertUser(userVo);
+			
+			/***Then***/
+			assertEquals(1, insertCnt);
+			
+			//data 삭제
+			//userDao.deleteUser(userId);
+			userService.deleteUser(userVo.getUserId());
+
+		}
+		
+	
+		
 		
 		
 

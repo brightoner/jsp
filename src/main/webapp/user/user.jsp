@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 날자 formet 변화 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,11 +37,12 @@
             <div class="row">
                <div class="col-sm-8 blog-main">
                   <h2 class="sub-header">사용자 상세</h2>
-                  <form class="form-horizontal" role="form">
+                  <form class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userModify" method="get">
+                           <input type="hidden" class="form-control" id="userId" name="userId" placeholder="사용자 아이디" value="${userVo.userId }">
 					<div class="form-group">
                         <label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
                         <div class="col-sm-10">
-                           <img src="${pageContext.request.contextPath}/profile?userId=${userVo.userId}"></img>
+                           <img src="${pageContext.request.contextPath}/profile?userId=${userVo.userId}" ></img>
                         </div>
                      </div>
       
@@ -47,7 +50,6 @@
                         <label for="userNm" class="col-sm-2 control-label" >사용자 아이디</label>
                         <div class="col-sm-10">
                            <label class="control-label">${userVo.userId }</label>
-<!--                            <input type="text" class="form-control" id="userId" name="userId" placeholder="사용자 아이디"> -->
                            
                         </div>
                      </div>
@@ -91,7 +93,8 @@
                      <div class="form-group">
                         <label for="userNm" class="col-sm-2 control-label">생일</label>
                         <div class="col-sm-10">
-                           <label class="control-label">${userVo.birth }</label>
+                           <label class="control-label">${userVo.birthStr }</label>
+<%--                            <label class="control-label"><fmt:formetDate value="${userVo.birth }" pattern="yyyy-MM-dd"></label> --%>
                         </div>
                      </div>
       

@@ -62,7 +62,7 @@ $(document).ready(function(){
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-						<h2 class="sub-header">사용자</h2>
+						<h2 class="sub-header">사용자 페이징리스트</h2>
 						
 						<!-- 사용자 상세 조회 : userId가 필요-->
 						<form id="frm" action="${pageContext.request.contextPath }/user" method="get">
@@ -103,7 +103,7 @@ $(document).ready(function(){
 							</table>
 						</div>
 
-						<a class="btn btn-default pull-right">사용자 등록</a>
+						<a href="${pageContext.request.contextPath }/userForm" class="btn btn-default pull-right">사용자 등록</a>
 
 						<!-- 사용자 수 : 105건 // 페이지 네이션 : 11건 -->
 						<div class="text-center">

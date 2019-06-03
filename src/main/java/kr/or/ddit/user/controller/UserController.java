@@ -29,18 +29,20 @@ public class UserController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		request.setCharacterEncoding("utf-8");
 		
-		//userList객체를 userList.jsp에서 참고할수 있도록 request객체에 속성으로 넘겨준다
-		request.setAttribute("userList", userService.userList());
-		
-		//userList객체를 이용하여 사용자 화면을 생성하는 jsp
-		request.getRequestDispatcher("/user/userList.jsp").forward(request, response);
+		   // requset객체로부터 사용자 아이디 파라미터획득
+	      String userId = request.getParameter("userId");
+	      //사용자 아이디로 사용자 정보를 조회
+	      UserVo userVo = userService.getUser(userId);
+	      //조회 결과를 request객체에 속성으로 저장
+	      request.setAttribute("userVo", userVo);
+	      //화면을 담당하는 /user/user.jsp로 foward
+	      request.getRequestDispatcher("/user/user.jsp").forward(request, response);
 		
  		
 	}
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
 
 }

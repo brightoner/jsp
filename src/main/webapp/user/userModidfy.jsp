@@ -16,7 +16,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>사용자 등록</title>
+<title>사용자 수정</title>
 
 <!-- css, js -->
 <%@include file="/common/basicLib.jsp"%>
@@ -24,9 +24,9 @@
 <script>
 $(document).ready(function(){
 	
-	var msg = '${msg}';   //메세지이므로 ''로 묶여야된다
-	if(msg !='')
-		alert(msg);
+// 	var msg = '${msg}';   //메세지이므로 ''로 묶여야된다
+// 	if(msg !='')
+// 		alert(msg);
 	
 	 //주소찾기 버튼 클릭 이벤트 핸들러
 	$("#addrSearchBtn").on("click", function(){
@@ -88,8 +88,8 @@ function dateInit(){
          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="row">
                <div class="col-sm-8 blog-main">
-                  <h2 class="sub-header">사용자 등록</h2>
-                  <form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userForm" method="post">
+                  <h2 class="sub-header">사용자 수정</h2>
+                  <form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userModify" method="post">
 					
 					<div class="form-group">
                         <label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
@@ -101,28 +101,28 @@ function dateInit(){
                      <div class="form-group">
                         <label for="userId" class="col-sm-2 control-label" >사용자 아이디</label>
                         <div class="col-sm-10">
-                           <input type="text" class="form-control" id="userId" name="userId" placeholder="사용자 아이디" value="${param.userId }">
+                           <input type="text" class="form-control" id="userId" name="userId" placeholder="아이디" value="${userVo.userId }" readonly>
                         </div>
                      </div>
       
                      <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">사용자 이름</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="이름" value="${param.name }">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="이름" value="${userVo.name }">
                         </div>
                      </div>
                      
                      <div class="form-group">
                         <label for="alias" class="col-sm-2 control-label">별명</label>
                         <div class="col-sm-10">
-                           <input type="text" class="form-control" id="alias" name="alias" placeholder="별명" value="${param.alias }">
+                           <input type="text" class="form-control" id="alias" name="alias" placeholder="별명" value="${userVo.alias }">
                         </div>
                      </div>
                      
                      <div class="form-group">
                         <label for="addr1" class="col-sm-2 control-label">주소</label>
                         <div class="col-sm-8">
-                          <input type="text"class="form-control" id="addr1" name="addr1" placeholder="주소" value="${param.addr1 }" readonly>
+                          <input type="text"class="form-control" id="addr1" name="addr1" placeholder="주소" value="${userVo.addr1 }" readonly>
                          </div>
                          <div class="col-sm-2">
                          <button id="addrSearchBtn" type="button" class="btn btn-default pull-right">주소검색</button>
@@ -132,34 +132,34 @@ function dateInit(){
                      <div class="form-group">
                         <label for="addr2" class="col-sm-2 control-label">상세주소</label>
                         <div class="col-sm-10">
-                           <input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소" value="${param.addr2 }">
+                           <input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소" value="${userVo.addr2 }">
                         </div>
                      </div>
                      
  						<div class="form-group">
                         <label for="zipcd" class="col-sm-2 control-label">우편번호</label>
                         <div class="col-sm-10">
-                           <input type="text" class="form-control" id="zipcd" name="zipcd" placeholder="우편번호" value="${param.zipcd }" readonly>
+                           <input type="text" class="form-control" id="zipcd" name="zipcd" placeholder="우편번호" value="${userVo.zipcd }" readonly>
                         </div>
                      </div>
                      
                      <div class="form-group">
                         <label for="birth" class="col-sm-2 control-label">생일</label>
                         <div class="col-sm-10">
-                           <input type="date" class="form-control" id="birth" name="birth" placeholder="생일" value="${param.birth }">
+                           <input type="date" class="form-control" id="birth" name="birth" placeholder="생일" value="${userVo.birthStr }">
                         </div>
                      </div>
                      
                       <div class="form-group">
                         <label for="pass" class="col-sm-2 control-label">비밀번호</label>
                         <div class="col-sm-10">
-                           <input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호" value="${param.pass }">
+                           <input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호" value="${userVo.pass }">
                         </div>
                      </div>
       
                      <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                           <button id="userRegBtn" type="button" class="btn btn-default">사용자 등록</button>
+.                           <button id="userRegBtn" type="button" class="btn btn-default">사용자 수정</button>
                         </div>
                      </div>
                   </form>   

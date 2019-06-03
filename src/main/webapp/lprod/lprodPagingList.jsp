@@ -18,7 +18,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>사용자리스트</title>
+<title>LPROD리스트</title>
 
 <!-- scc, js -->
 <%@include file="/common/basicLib.jsp" %>
@@ -38,13 +38,13 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-						<h2 class="sub-header">사용자</h2>
+						<h2 class="sub-header">LPROD리스트</h2>
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<tr>
-									<th>사용자 아이디</th>
-									<th>사용자 이름</th>
-									<th>사용자 별명</th>
+									<th>LPROD ID</th>
+									<th>LPROD GU</th>
+									<th>LPROD NAME</th>
 								</tr>
 								
 								<c:forEach items="${lprodList }" var="vo" varStatus="status">

@@ -68,6 +68,46 @@ public class UserService implements IUserService{
 		
 		return resultMap;
 	}
+
+	
+	/**
+	* Method : insertUser
+	* 작성자 : PC22
+	* 변경이력 :
+	* @param userVo
+	* @return
+	* Method 설명 : 사용자 등록
+	*/
+	@Override
+	public int insertUser(UserVo userVo) {
+		return dao.insertUser(userVo);
+	}
+
+	/**
+	* Method : deleteUser
+	* 작성자 : PC22
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 : 사용자 삭제
+	*/
+	@Override
+	public int deleteUser(String userId) {
+		return dao.deleteUser(userId);
+	}
+
+	/**
+	* Method : updateDataUser
+	* 작성자 : PC22
+	* 변경이력 :
+	* @param userVo
+	* @return
+	* Method 설명 : 사용자 수정
+	*/
+	@Override
+	public int updateDataUser(UserVo userVo) {
+		return dao.updateDataUser(userVo);
+	}
 	
 
 	
