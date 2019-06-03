@@ -1,6 +1,8 @@
 package kr.or.ddit.user.model;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 
 public class UserVo {
@@ -15,20 +17,37 @@ public class UserVo {
 	private Date birth;
 	private String path;
 	
+	public String getBirthStr(){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		if(birth == null){
+			return "";
+		}
+		return sdf.format(birth);  //date타입 String 으로 변환  (sdf.parse() - String 형태를 date타입으로 변환)
+	}
+	
 	public UserVo(String name, String userId, String alias, String pass,
-			String addr1, String addr2, String zipcd, Date birth, String path) {
-		super();
-		this.name = name;
-		this.userId = userId;
-		this.alias = alias;
+			String addr1, String addr2, String zipcd, Date birth) {
+		this(name, userId, alias);
 		this.pass = pass;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
 		this.zipcd = zipcd;
 		this.birth = birth;
-		this.path = path;
+	}
+
+	public UserVo(){
+		
 	}
 	
+	public UserVo(String name, String userId, String alias) {
+		this.name = name;
+		this.userId = userId;
+		this.alias = alias;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "UserVo [name=" + name + ", userId=" + userId + ", alias="
