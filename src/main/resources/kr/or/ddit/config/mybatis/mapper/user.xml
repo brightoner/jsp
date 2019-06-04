@@ -71,6 +71,29 @@
 		where userid = #{userId}
 	
 	</update>
+	
+	<!-- 사용자 비밀번호 암호화 적용 대상 조회 -->
+	<select id="userListForPassEncypt" resultType="userVo">
+		select * 
+		from users
+		where userid not in( 'korea', 'brown')
+	</select>
+	
+	<!-- 사용자 비밀번호 update -->
+	<update id="updateUserEncyptPass" parameterType="userVo">
+		update users set pass = #{pass}
+		where userid = #{userId}
+	</update>
+	
+	
 
 
 </mapper>
+
+
+
+
+
+
+
+

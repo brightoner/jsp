@@ -59,5 +59,35 @@ public interface IUserService {
 	*/
 	int updateDataUser(UserVo userVo);
 	
+	/**
+	* Method : encyptPassAllUser
+	* 작성자 : PC22
+	* 변경이력 :
+	* @return
+	* Method 설명 : 사용자 비밀번호 암호화 이괄적용 패치
+	*/
+	int encyptPassAllUser();
+	
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

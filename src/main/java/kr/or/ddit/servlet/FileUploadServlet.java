@@ -51,7 +51,7 @@ public class FileUploadServlet extends HttpServlet {
 		
 		UserVo userVo = new UserVo();
 		
-		Part part = request.getPart("profile");
+		Part part = request.getPart("profile"); 	//jsp와 맞출 parameter
 		logger.debug("part.getSize() : {}", part.getSize());
 		
 		//파일이 존재할때만 파일을 정해진 위치에 기록한다
