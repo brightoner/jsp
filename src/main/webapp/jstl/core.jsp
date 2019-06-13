@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="kr.or.ddit.paging.model.PageVo"%>
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -69,16 +71,51 @@
 	page + 2 : ${pageVo.page + 2 }
 	
 	
-	<h2>c: forEacj 일반 반목문</h2>
+	<h2>c: forEach 일반 반목문</h2>
 	<%--for(int i=1; i <10; i++) --%>
 	<c:forEach begin="1" end="10" step="1" var="i">
 		${i }<br>
 	</c:forEach>
 	
 	
+	
+	<!-- foreach 로 map 도 가능하다!! 자주 사용은 X -->
+	<h2>foreach map</h2>
+	<%
+		Map<String, String> dataMap = new HashMap<String, String>();
+		//name, age,hp
+		dataMap.put("name", "brown");
+		dataMap.put("age", "8");
+		dataMap.put("hp", "101-8888-8888");
+		
+		for(String key : dataMap.keySet())
+			out.write(dataMap.get(key) + "<br>");
+		
+		request.setAttribute("dataMap", dataMap);
+	
+	%>
+	================================================<br>
+	<c:forEach items="${dataMap }" var="data">
+		${data.key } / ${data.value }<br>
+	</c:forEach>
+	<br>
+	<br>
+	
+	
+	
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
