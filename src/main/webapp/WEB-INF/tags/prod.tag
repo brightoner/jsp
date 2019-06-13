@@ -15,22 +15,16 @@
 code : ${code }<br>
 
 <%
-	String prod_lgu = (String)jspContext.getAttribute("code");
+	String prod_lgu = (String)jspContext.getAttribute("prod_lgu");
 	IprodDoo prodDao = new ProdDao();
 	jspContext.setAttribute("prodList", prodDao.getProd(prod_lgu));
 	
 	
-
-
-
 	
-	
-	
-	
-	
-
-
-
 %>
-
+<select>
+	<c:forEach items="${prodList }" var="list">
+		<option id="${list.prod_id}">${list.prod_name }</option>
+	</c:forEach>
+</select>
 

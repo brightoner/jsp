@@ -30,12 +30,7 @@
 	</select>
 	
 	
-	<select id="getProd" parameterType="string" resultType="prodVo">
-		select prod_id
-			  ,prod_name
-		from prod
-		where prod_lgu = 'p102'
-	</select>
+	
 
 
 </mapper> 
