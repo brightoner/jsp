@@ -8,7 +8,7 @@
 </head>
 <body>
 	<!-- 	파일전송은 post만가능 -->
-	<form action="${pageContext.request.contextPath }/fileUpload" method="post" enctype="multipart/form-data">
+	<form action="${cp }/fileUpload" method="post" enctype="multipart/form-data">
 		userId : <input  type="text" name="userId" value="brown"/><br>
 		file : <input type="file" name="profile"/><Br>
 		<input type="submit" value="전송">

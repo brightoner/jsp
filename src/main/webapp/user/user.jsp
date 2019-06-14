@@ -37,12 +37,12 @@
             <div class="row">
                <div class="col-sm-8 blog-main">
                   <h2 class="sub-header">사용자 상세</h2>
-                  <form class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userModify" method="get">
+                  <form class="form-horizontal" role="form" action="${cp }/userModify" method="get">
                            <input type="hidden" class="form-control" id="userId" name="userId" placeholder="사용자 아이디" value="${userVo.userId }">
 					<div class="form-group">
                         <label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
                         <div class="col-sm-10">
-                           <img src="${pageContext.request.contextPath}/profile?userId=${userVo.userId}" ></img>
+                           <img src="${cp}/profile?userId=${userVo.userId}" ></img>
                         </div>
                      </div>
       
@@ -128,7 +128,7 @@
                            
                         <li class="prev disabled"><span>«</span></li>
                         <% }else{%>
-                        <li class="prev"><a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage()-1 %>&pageSize=<%= pageVo.getPageSize()%>">«</a></li>
+                        <li class="prev"><a href="${cp}/userPagingList?page=<%=pageVo.getPage()-1 %>&pageSize=<%= pageVo.getPageSize()%>">«</a></li>
                         <%   
                         }
                         
@@ -142,7 +142,7 @@
                               <li class="active"><span><%=i %></span></li>
                            <% }else{%>
                               
-                           <li><a href="${pageContext.request.contextPath}/userPagingList?page=<%=i %>&pageSize=<%= pageVo.getPageSize()%>"><%=i%></a></li>
+                           <li><a href="${cp}/userPagingList?page=<%=i %>&pageSize=<%= pageVo.getPageSize()%>"><%=i%></a></li>
       
                            <% }
                         }
@@ -151,7 +151,7 @@
                         
                         <li class="next disabled"><span>»</span></li>
                         <% }else{%>
-                        <li class="next"><a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage()+1 %>&pageSize=<%= pageVo.getPageSize()%>">»</a></li>
+                        <li class="next"><a href="${cp}/userPagingList?page=<%=pageVo.getPage()+1 %>&pageSize=<%= pageVo.getPageSize()%>">»</a></li>
                         <%   
                         }
                         

@@ -89,7 +89,7 @@ function dateInit(){
             <div class="row">
                <div class="col-sm-8 blog-main">
                   <h2 class="sub-header">사용자 등록</h2>
-                  <form id="frm" class="form-horizontal" role="form" action="${pageContext.request.contextPath }/userForm" method="post" enctype="multipart/form-data">
+                  <form id="frm" class="form-horizontal" role="form" action="${cp }/userForm" method="post" enctype="multipart/form-data">
 					
 					<div class="form-group">
                         <label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
@@ -187,7 +187,7 @@ function dateInit(){
                            
                         <li class="prev disabled"><span>«</span></li>
                         <% }else{%>
-                        <li class="prev"><a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage()-1 %>&pageSize=<%= pageVo.getPageSize()%>">«</a></li>
+                        <li class="prev"><a href="${cp}/userPagingList?page=<%=pageVo.getPage()-1 %>&pageSize=<%= pageVo.getPageSize()%>">«</a></li>
                         <%   
                         }
                         
@@ -201,7 +201,7 @@ function dateInit(){
                               <li class="active"><span><%=i %></span></li>
                            <% }else{%>
                               
-                           <li><a href="${pageContext.request.contextPath}/userPagingList?page=<%=i %>&pageSize=<%= pageVo.getPageSize()%>"><%=i%></a></li>
+                           <li><a href="${cp}/userPagingList?page=<%=i %>&pageSize=<%= pageVo.getPageSize()%>"><%=i%></a></li>
       
                            <% }
                         }
@@ -210,7 +210,7 @@ function dateInit(){
                         
                         <li class="next disabled"><span>»</span></li>
                         <% }else{%>
-                        <li class="next"><a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage()+1 %>&pageSize=<%= pageVo.getPageSize()%>">»</a></li>
+                        <li class="next"><a href="${cp}/userPagingList?page=<%=pageVo.getPage()+1 %>&pageSize=<%= pageVo.getPageSize()%>">»</a></li>
                         <%   
                         }
                         

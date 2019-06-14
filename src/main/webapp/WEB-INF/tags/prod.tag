@@ -1,5 +1,6 @@
+<%@tag import="kr.or.ddit.prod.doa.IprodDao"%>
 <%@tag import="kr.or.ddit.prod.doa.ProdDao"%>
-<%@tag import="kr.or.ddit.prod.doa.IprodDoo"%>
+<%@tag import="kr.or.ddit.prod.doa.IprodDao"%>
 <%@tag import="kr.or.ddit.prod.service.ProdService"%>
 <%@tag import="kr.or.ddit.prod.service.IprodService"%>
 <%@tag import="java.sql.DriverManager"%>
@@ -12,12 +13,12 @@
 <%@ taglib prefix="ct" tagdir="/WEB-INF/tags" %>
 <%@ attribute name="code" required="true" %>
 
-code : ${code }<br>
+code : ${code}<br>
 
 <%
-	String prod_lgu = (String)jspContext.getAttribute("prod_lgu");
-	IprodDoo prodDao = new ProdDao();
-	jspContext.setAttribute("prodList", prodDao.getProd(prod_lgu));
+	
+	IprodDao prodDao = new ProdDao();
+	jspContext.setAttribute("prodList", prodDao.prodList(code));
 	
 	
 	

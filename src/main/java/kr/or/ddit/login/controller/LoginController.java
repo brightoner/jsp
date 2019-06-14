@@ -56,6 +56,8 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("loginController doGet()");	//sysout대신 사용
 		
+		logger.debug("parameter UNT_CD : {}", request.getParameter("UNT_CD") );
+		
 		//cookie처리
 		if(request.getCookies() != null){
 			for(Cookie cookie : request.getCookies()){
@@ -100,12 +102,14 @@ public class LoginController extends HttpServlet {
 		logger.debug("parameter password : {}", request.getParameter("password") );
 		
 		
+		logger.debug("parameter UNT_CD : {}", request.getParameter("UNT_CD") );
+		
+		
 		
 		//사용자 파라미터 serId, password
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		String encyrptPassword = KISA_SHA256.encrypt(password);
-		
 		
 		
 		

@@ -6,11 +6,10 @@
 <mapper namespace="prod">
 
 
-<select id="getProd" parameterType="string" resultType="prodVo">
-		select prod_id
-			  ,prod_name
+<select id="prodList" parameterType="string" resultType="prodVo">
+		select *
 		from prod
-		where prod_lgu = 'p102'
+		where prod_lgu = #{prod_lgu}
 	</select>
 	
 </mapper>

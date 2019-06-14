@@ -69,7 +69,7 @@
 										<li class="disabled"><span>«</span></li>
 									</c:when>
 									<c:otherwise>
-										<li><a href="${pageContext.request.contextPath }/lprodPagingList?page=${pageVo.page -1 }&pageSize=${pageVo.pageSize }">«</a></li>
+										<li><a href="${cp }/lprodPagingList?page=${pageVo.page -1 }&pageSize=${pageVo.pageSize }">«</a></li>
 									</c:otherwise>
 								
 								</c:choose>
@@ -83,7 +83,7 @@
 									</c:when>
 									<c:otherwise>
 										<li>
-									 		<a href="${pageContext.request.contextPath}/lprodPagingList?page=${i }&pageSize=${pageVo.pageSize }">${i }</a>
+									 		<a href="${cp}/lprodPagingList?page=${i }&pageSize=${pageVo.pageSize }">${i }</a>
 									 	<li>
 									</c:otherwise>
 								</c:choose>
@@ -94,7 +94,7 @@
 										<li class="disabled"><span>»</span></li>
 									</c:when>
 									<c:otherwise>
-										<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=${pageVo.page +1 }&pageSize=${pageVo.pageSize }">»</a></li>
+										<li><a href="${cp}/lprodPagingList?page=${pageVo.page +1 }&pageSize=${pageVo.pageSize }">»</a></li>
 									</c:otherwise>
 								</c:choose>
 							

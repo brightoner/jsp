@@ -4,8 +4,8 @@ import java.util.List;
 
 import kr.or.ddit.prod.model.ProdVo;
 
-public interface IprodDoo {
+public interface IprodDao {
 
-	List<ProdVo> getProd(String prod_lgu);
+	List<ProdVo> prodList(String prod_lgu);
 	
 }

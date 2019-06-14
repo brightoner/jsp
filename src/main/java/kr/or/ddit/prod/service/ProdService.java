@@ -16,8 +16,8 @@ public class ProdService implements IprodService {
 	private static ProdService service;
 
 	@Override
-	public List<ProdVo> getProd(String prod_lgu) {
-		return dao.getProd(prod_lgu);
+	public List<ProdVo> prodList(String prod_lgu) {
+		return dao.prodList(prod_lgu);
 	}
 	
 	

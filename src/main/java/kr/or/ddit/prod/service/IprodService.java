@@ -6,6 +6,6 @@ import kr.or.ddit.prod.model.ProdVo;
 
 public interface IprodService {
 	
-	List<ProdVo> getProd(String prod_lgu);
+	List<ProdVo> prodList(String prod_lgu);
 
 }
