@@ -1,12 +1,12 @@
 # :kr:jsp
 
-:four_leaf_clover: <pre>## jsp기초</pre>
-1. TimeFormet
+## :four_leaf_clover:jsp기초
+<pre>1. TimeFormet
 2. TimedTable(구구단 출력)
 3. Factorial
 4. 파일 업로드
 5. 엑셀 다운로드
-6. 기타 등등
+6. 기타 등등</pre>
 
 ## :four_leaf_clover:Login 
 1. jsp <--> servlet
