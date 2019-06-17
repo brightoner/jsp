@@ -10,14 +10,14 @@
 
 ## Login 
 1. jsp <--> servlet
-2. *session* 사용
-3. *coolie* 사용하기
+2. ***session*** 사용
+3. ***coolie*** 사용하기
 4. KISA_SHA 암호 이용하기
 
 ## user, lprod
 1. xml//dao//service//vo//controller
- 1. form 테그의 *action속성*과 *method 속성*
- 2. jsp파일과 serlvet 간에 parameter 받기(*mane 속성*)
+ 1. form 테그의 ***action속성***과 ***method 속성***
+ 2. jsp파일과 serlvet 간에 parameter 받기(***mane 속성***)
 2.pagingList처리하기
  1. service 에서 한나의 매소드로 여러개의 다오 받기
  
@@ -33,7 +33,7 @@
  > ${속성명}
 
 ## 국제화
-1. *select box*를 이용한 예제
+1. ***select box***를 이용한 예제
 
 ## error처리
 
