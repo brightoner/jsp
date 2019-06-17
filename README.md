@@ -26,11 +26,11 @@
 
 ## core -  el, jstl
 1. 스크립틀잇, 표현식을 jsp에서 걷어내기
- > el,jstl 사용
+ - el,jstl 사용
 2. jstl
- > <c:forEach>, <c:set>, <c:if>
+ - <c:forEach>, <c:set>, <c:if>
 3. el
- > ${속성명}
+ - ${속성명}
 
 ## 국제화
 1. ***select box***를 이용한 예제
@@ -47,7 +47,7 @@
 ## Listener
 1. session life cycle, attribute
 2. applicattion life cycle
-    ${pageContext.request.contextPath}
+   - ${pageContext.request.contextPath}
      --> ${cp}
 3. HttpSessionBindingEvent : userVo
  
