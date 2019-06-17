@@ -1,6 +1,6 @@
 # :kr:jsp
 
-<pre>## :four_leaf_clover:jsp기초</pre>
+:four_leaf_clover: <pre>## jsp기초</pre>
 1. TimeFormet
 2. TimedTable(구구단 출력)
 3. Factorial
