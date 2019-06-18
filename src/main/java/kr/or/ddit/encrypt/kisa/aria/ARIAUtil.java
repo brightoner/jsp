@@ -1,8 +1,4 @@
-ï»¿/**
- * ì „ìì •ë¶€ ì œê³µ ARIAUTIL
- * ARIAUtil
- */
-//package crdf.regi.egov.security;
+
 package kr.or.ddit.encrypt.kisa.aria;
 
 import java.io.File;
@@ -85,7 +81,7 @@ public class ARIAUtil {
 	}
 
 	/*
-	 *Aria ë³µí˜¸í™”
+	 *Aria º¹È£È­
 	 */
 	public static String ariaDecrypt(String strHex, String privateKey) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
@@ -158,7 +154,7 @@ public class ARIAUtil {
 
 
 	/*
-	 *Aria ê¸°ë³¸ ë³µí˜¸í™”
+	 *Aria ±âº» º¹È£È­
 	 */
 	public static String ariaDecrypt(String strHex) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
@@ -185,7 +181,7 @@ public class ARIAUtil {
 		}
 	}
 	/*
-	*aria ê¸°ë³¸ ì•”í˜¸í™”
+	*aria ±âº» ¾ÏÈ£È­
 	*/
 	public static String ariaEncrypt(String str) 
 	throws InvalidKeyException, UnsupportedEncodingException {
@@ -210,7 +206,7 @@ public class ARIAUtil {
 	}
 	
 	/*
-	*ìºë¦­í„°ì…‹ ë³€ê²½ ì•”í˜¸í™”
+	*Ä³¸¯ÅÍ¼Â º¯°æ ¾ÏÈ£È­
 	*/
 	public static String ariaCharEncrypt(String str, String charset) 
 	throws InvalidKeyException, UnsupportedEncodingException {
@@ -233,8 +229,8 @@ public class ARIAUtil {
 	}
 	
 	/*
-	*ìºë¦­í„°ì…‹ ë³€ê²½ ì•”í˜¸í™”
-	*(ì„œë²„íƒ€ì…ì„¤ì • ì—´ëŒì„œë²„ : read, ë“±ë¡ê´€ë¦¬ì„œë²„ : regi)
+	*Ä³¸¯ÅÍ¼Â º¯°æ ¾ÏÈ£È­
+	*(¼­¹öÅ¸ÀÔ¼³Á¤ ¿­¶÷¼­¹ö : read, µî·Ï°ü¸®¼­¹ö : regi)
 	*/
 	public static String ariaCharEncrypt(String str, String charset, String server) 
 	throws InvalidKeyException, UnsupportedEncodingException {
@@ -262,7 +258,7 @@ public class ARIAUtil {
 
 
 	/*
-	 *Aria ìºë¦­í„°ì…‹ ë³€ê²½ ë³µí˜¸í™”
+	 *Aria Ä³¸¯ÅÍ¼Â º¯°æ º¹È£È­
 	 */
 	public static String ariaCharDecrypt(String strHex,  String charset) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
@@ -284,8 +280,8 @@ public class ARIAUtil {
 	}
 	
 	/*
-	 *Aria ìºë¦­í„°ì…‹ ë³€ê²½ ë³µí˜¸í™”
-	 *(ì„œë²„íƒ€ì…ì„¤ì • ì—´ëŒì„œë²„ : read, ë“±ë¡ê´€ë¦¬ì„œë²„ : regi)
+	 *Aria Ä³¸¯ÅÍ¼Â º¯°æ º¹È£È­
+	 *(¼­¹öÅ¸ÀÔ¼³Á¤ ¿­¶÷¼­¹ö : read, µî·Ï°ü¸®¼­¹ö : regi)
 	 */
 	public static String ariaCharDecrypt(String strHex,  String charset, String server) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
